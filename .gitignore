@@ -1,0 +1,57 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot specific ignores
+.import/
+.export/
+*.godot/tmp/*
+*.import
+*.flags
+
+# Backup files
+*.save
+*.tmp
+*.godot_exported_flag
+
+# OS-specific files
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# macOS resource fork files
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.DS_Store
+.fseventsd
+
+# Linux temporary files
+*~
+
+# Godot mono-specific
+*.mono/
+.mono/
+mono/
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs
+*.log
+
+# Build directories
+bin/
+build/
+
+# Specification
+.specification/
