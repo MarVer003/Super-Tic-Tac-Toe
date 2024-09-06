@@ -13,11 +13,11 @@ var is_active : bool
 func _init() -> void:
 	self.id = board_num
 	for i in range(9):
-		self.board.append(BoardConstants.N)
+		self.board_state.append(BoardConstants.N)
 	board_num += 1
 
 func move(cell: int, player: int) -> Variant:
-	self.board[cell] = player
+	self.board_state[cell] = player
 	
 	if __check_win():
 		self.who_won = player

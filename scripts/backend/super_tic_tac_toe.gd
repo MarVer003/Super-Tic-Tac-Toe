@@ -19,9 +19,9 @@ func _init() -> void:
 	self.focused_subboard = null
 	self.can_play_anywhere = true
 	for i in range(9):
-		self.board.append(BoardConstants.N)
+		self.board_state.append(BoardConstants.N)
 	for i in range(9):
-		self.board.append(TicTacToe.new())
+		self.subboards.append(TicTacToe.new())
 	board_num += 1
 
 func move(subboard: int, cell: int) -> String:
@@ -34,7 +34,7 @@ func move(subboard: int, cell: int) -> String:
 	return player_string
 	
 func __what_to_focus(cell : int) -> void:
-	can_play_anywhere = not subboards[cell].active
+	can_play_anywhere = not subboards[cell].is_active
 	focused_subboard = subboards[cell]
 	
 func __check_super_win() -> bool:

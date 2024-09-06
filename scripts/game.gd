@@ -18,8 +18,8 @@ func _ready() -> void:
 
 
 func _on_main_grid_sig_button_pressed(btn: Button, grid : GridContainer) -> void:
-	var subgame_index := int(grid.name)
-	var cell_index := int(btn.name)
+	var subgame_index := int(str(grid.name))
+	var cell_index := int(str(btn.name))
 	btn.text = super_tic_tac_toe.move(subgame_index, cell_index)
 
 	if subgames[cell_index] in playable_subgames:
@@ -32,7 +32,7 @@ func _on_main_grid_sig_button_pressed(btn: Button, grid : GridContainer) -> void
 	
 	enable_grid(subgames[super_tic_tac_toe.focused_subboard.id])
 	
-	# Make the game playable
+	# TODO: Make the game playable
 
 
 func disable_grid(subgame : GridContainer):

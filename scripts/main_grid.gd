@@ -13,16 +13,16 @@ func initiate_board() -> void:
 		var grid = GridContainer.new()
 		grid.custom_minimum_size = Vector2(width, height)
 		grid.columns = 3
-		grid.name = i
+		grid.name = str(i)
 		
 		# For buttons (cells) inside every smaller grid #
 		for j in range(9):
 			var btn = Button.new()
 			btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-			btn.name = j
+			btn.name = str(j)
 			btn.add_theme_stylebox_override("focus", StyleBox.new())
-			btn.connect("pressed", _on_button_pressed.bind(btn, btn.get_parent()))
+			btn.connect("pressed", _on_button_pressed.bind(btn, grid))
 			grid.add_child(btn)
 		
 		add_child(grid)
