@@ -2,6 +2,7 @@ class_name TicTacToe extends Object
 
 # Imports
 const BoardConstants = preload("res://scripts/enums/constants.gd").Board
+const ConstantMapper = preload("res://scripts/mapper/constant_mapper.gd")
 
 static var board_num := 0
 
@@ -12,6 +13,7 @@ var is_active : bool
 
 func _init() -> void:
 	self.id = board_num
+	self.is_active = true
 	for i in range(9):
 		self.board_state.append(BoardConstants.N)
 	board_num += 1
@@ -22,11 +24,30 @@ func move(cell: int, player: int) -> Variant:
 	if __check_win():
 		self.who_won = player
 		self.is_active = false
-	if __check_tie():
+		print("Small win for ", ConstantMapper.constant_to_string(player))
+	elif __check_tie():
 		self.who_won = BoardConstants.N
-		self.is_active = false	
+		self.is_active = false
+		print("It's a small tie")
 	
 	return self.who_won
+
+func disabled_status() -> Array:
+	if !is_active:
+		return range(9)
+	var disabled := []
+	for i in range(9):
+		if board_state[i] != BoardConstants.N:
+			disabled.append(i)
+	return disabled
+
+func enabled_status() -> Array:
+	var disabled := disabled_status()
+	var enabled := []
+	for i in range(9):
+		if i not in disabled:
+			enabled.append(i)
+	return enabled
 
 func __check_win() -> bool:
 	var board = self.board_state

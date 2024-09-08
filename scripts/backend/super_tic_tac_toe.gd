@@ -30,8 +30,33 @@ func move(subboard: int, cell: int) -> String:
 	if result != null:
 		self.board_state[subboard] = result
 	__what_to_focus(cell)
+	
+	if __check_super_win():
+		print("A WIN FOR ", ConstantMapper.constant_to_string(player_turn), "!!!")
+	elif __check_super_tie():
+		print("IT'S A TIE!!!")
+		
 	player_turn = BoardConstants.X if player_turn == BoardConstants.O else BoardConstants.O
 	return player_string
+
+## Disabled/Unfocused grids and cells - 0th index
+## Enabled/focused grids and cells - 1st index
+func disabled_enabled_status() -> Array[Dictionary]:
+	var disabled : Dictionary
+	var enabled : Dictionary
+	if can_play_anywhere:
+		for i in range(9):
+			disabled[i] = subboards[i].disabled_status()
+			enabled[i] = subboards[i].enabled_status()
+	else:
+		for i in range(9):
+			if subboards[i] != focused_subboard:
+				disabled[i] = range(9)
+			else:
+				disabled[i] = subboards[i].disabled_status()
+				enabled[i] = subboards[i].enabled_status()
+	
+	return [disabled, enabled]
 	
 func __what_to_focus(cell : int) -> void:
 	can_play_anywhere = not subboards[cell].is_active

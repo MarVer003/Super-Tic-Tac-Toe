@@ -2,10 +2,6 @@ extends Control
 
 @onready var node_main_grid := $CenterContainer/MainGrid
 
-const Turn = preload("res://scripts/turn.gd").Turn
-
-var player_turn := Turn.X
-
 var grid_focus : GridContainer = null
 var subgames : Array[GridContainer]
 var playable_subgames : Array[GridContainer]
@@ -21,29 +17,29 @@ func _on_main_grid_sig_button_pressed(btn: Button, grid : GridContainer) -> void
 	var subgame_index := int(str(grid.name))
 	var cell_index := int(str(btn.name))
 	btn.text = super_tic_tac_toe.move(subgame_index, cell_index)
-
-	if subgames[cell_index] in playable_subgames:
-		grid_focus = subgames[cell_index]
-		enable_grid(subgames[cell_index])
 	
-	for subgame in playable_subgames:
-		if subgame != grid_focus:
-			disable_grid(subgame)
+	focus_on_grid()
 	
-	enable_grid(subgames[super_tic_tac_toe.focused_subboard.id])
-	
-	# TODO: Make the game playable
 
+func focus_on_grid():
+	var disable_enable := super_tic_tac_toe.disabled_enabled_status()
+	var disable := disable_enable[0]
+	var enable := disable_enable[1]
+	for i in range(9):
+		if i in disable:
+			disable_grid(subgames[i], disable[i])
+		if i in enable:
+			enable_grid(subgames[i], enable[i])
 
-func disable_grid(subgame : GridContainer):
-	for obj in subgame.get_children():
-		if(obj.name.contains("btn")):
-			obj.disabled = true
-			
-func enable_grid(subgame : GridContainer):
-	for obj in subgame.get_children():
-		if(obj.name.contains("btn") and str(obj.text) == ""):
-			obj.disabled = false
+func disable_grid(subgame : GridContainer, cells : Array):
+	for btn : Button in subgame.get_children():
+		if int(str(btn.name)) in cells:
+			btn.disabled = true
+
+func enable_grid(subgame : GridContainer, cells : Array):
+	for btn : Button in subgame.get_children():
+		if int(str(btn.name)) in cells:
+			btn.disabled = false
 
 
 func _on_main_grid_sig_grid_added(grid: GridContainer) -> void:
