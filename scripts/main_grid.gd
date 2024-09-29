@@ -8,8 +8,13 @@ var height := width
 
 
 func initiate_board() -> void:
+	var children := get_children(true)
+	for child in children:
+		remove_child(child)
+	
 	# For grids inside the main grid #
 	for i in range(9):
+		var container = CenterContainer.new()
 		var grid = GridContainer.new()
 		grid.custom_minimum_size = Vector2(width, height)
 		grid.columns = 3
@@ -25,7 +30,8 @@ func initiate_board() -> void:
 			btn.connect("pressed", _on_button_pressed.bind(btn, grid))
 			grid.add_child(btn)
 		
-		add_child(grid)
+		container.add_child(grid)
+		add_child(container)
 		sig_grid_added.emit(grid)
 		
 

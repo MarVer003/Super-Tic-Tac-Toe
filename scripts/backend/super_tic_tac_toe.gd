@@ -24,20 +24,32 @@ func _init() -> void:
 		self.subboards.append(TicTacToe.new())
 	board_num += 1
 
-func move(subboard: int, cell: int) -> String:
+func move(subboard: int, cell: int) -> Array:
+	var return_array : Array
+	
 	var player_string := ConstantMapper.constant_to_string(player_turn)
+	return_array.append(player_string)
+	
 	var result = subboards[subboard].move(cell, self.player_turn)
 	if result != null:
 		self.board_state[subboard] = result
+		return_array.append(result)
+		
 	__what_to_focus(cell)
 	
 	if __check_super_win():
 		print("A WIN FOR ", ConstantMapper.constant_to_string(player_turn), "!!!")
+		return_array.append(player_turn)
 	elif __check_super_tie():
 		print("IT'S A TIE!!!")
+		return_array.append(BoardConstants.T)
 		
 	player_turn = BoardConstants.X if player_turn == BoardConstants.O else BoardConstants.O
-	return player_string
+	print(ConstantMapper.constant_to_string(board_state[0]), ConstantMapper.constant_to_string(board_state[1]), ConstantMapper.constant_to_string(board_state[2]))
+	print(ConstantMapper.constant_to_string(board_state[3]), ConstantMapper.constant_to_string(board_state[4]), ConstantMapper.constant_to_string(board_state[5]))
+	print(ConstantMapper.constant_to_string(board_state[6]), ConstantMapper.constant_to_string(board_state[7]), ConstantMapper.constant_to_string(board_state[8]))
+	print()
+	return return_array
 
 ## Disabled/Unfocused grids and cells - 0th index
 ## Enabled/focused grids and cells - 1st index

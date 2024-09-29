@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cg4pigguwiyjv"]
+[gd_scene load_steps=13 format=3 uid="uid://cg4pigguwiyjv"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_urqmm"]
 [ext_resource type="Script" path="res://scripts/main_grid.gd" id="2_r17uh"]
@@ -20,6 +20,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eibbp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bpxs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8j17"]
+bg_color = Color(0.768581, 0.560127, 0, 1)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -58,10 +61,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_nyfjj")
 shortcut_feedback = false
 shortcut_in_tooltip = false
 
-[node name="ColorRect" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
-
 [node name="Button2" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
 layout_mode = 2
@@ -69,37 +68,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_35rsj")
 
-[node name="ColorRect2" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
-
 [node name="Button3" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_etlnv")
-
-[node name="ColorRect3" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
-
-[node name="ColorRect4" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
-
-[node name="ColorRect5" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
-
-[node name="ColorRect6" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
-
-[node name="ColorRect7" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-layout_mode = 2
 
 [node name="Button4" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
@@ -109,11 +83,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_esar3")
 
-[node name="ColorRect8" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
 [node name="Button5" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
 custom_minimum_size = Vector2(96, 0)
@@ -121,11 +90,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2m7d3")
-
-[node name="ColorRect9" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
 
 [node name="Button6" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
@@ -135,31 +99,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k4tkd")
 
-[node name="ColorRect10" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(0, 3)
-layout_mode = 2
-
-[node name="ColorRect11" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ColorRect12" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ColorRect13" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ColorRect14" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
 [node name="Button7" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
 custom_minimum_size = Vector2(96, 0)
@@ -167,11 +106,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l1x4v")
-
-[node name="ColorRect15" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
 
 [node name="Button8" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
@@ -181,11 +115,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eibbp")
 
-[node name="ColorRect16" type="ColorRect" parent="CenterContainer/MainGrid"]
-visible = false
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
 [node name="Button9" type="Button" parent="CenterContainer/MainGrid"]
 visible = false
 custom_minimum_size = Vector2(96, 0)
@@ -193,6 +122,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_8bpxs")
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8j17")
 
 [connection signal="sig_button_pressed" from="CenterContainer/MainGrid" to="." method="_on_main_grid_sig_button_pressed"]
 [connection signal="sig_grid_added" from="CenterContainer/MainGrid" to="." method="_on_main_grid_sig_grid_added"]

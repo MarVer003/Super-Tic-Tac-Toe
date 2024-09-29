@@ -24,9 +24,10 @@ func move(cell: int, player: int) -> Variant:
 	if __check_win():
 		self.who_won = player
 		self.is_active = false
+		
 		print("Small win for ", ConstantMapper.constant_to_string(player))
 	elif __check_tie():
-		self.who_won = BoardConstants.N
+		self.who_won = BoardConstants.T
 		self.is_active = false
 		print("It's a small tie")
 	
